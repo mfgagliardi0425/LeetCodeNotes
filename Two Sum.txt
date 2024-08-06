@@ -1,0 +1,22 @@
+# In the approach below, I take advantage of a one-pass hash table,
+# meaning we only need to iterate through the list of nums one time.
+# While iterating and inserting elements into the table it's possible
+# to check previous entries for a complement and return if applicable
+
+class Solution(object):
+    def twoSum(self, nums, target):
+        """
+        :type nums: List[int]
+        :type target: int
+        :rtype: List[int]
+        """
+        # create a hashmap
+        nummap = {}
+        # hash value=index and key=number
+        # search for i where i = target - value
+        for count,number in enumerate(nums):
+            value_needed = target - number
+            if value_needed in nummap:
+                return [nummap[value_needed], count]
+            nummap[number] = count
+        return []
