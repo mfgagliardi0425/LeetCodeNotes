@@ -1,0 +1,19 @@
+# 
+
+class Solution(object):
+    def isPalindrome(self, x):
+        """
+        :type x: int
+        :rtype: bool
+        """
+        # fail cases: negative, ends in 0, 
+        if x<0 or (x%10==0 and x!=0):
+            return False
+        
+        # flip number digit by digit
+        flip = 0
+        while x>flip:
+            flip = flip*10 + x%10
+            x//=10
+
+        return x==flip or x==flip//10
