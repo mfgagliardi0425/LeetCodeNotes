@@ -1,0 +1,57 @@
+class Solution:
+    # WHILE MY SOLUTION IS UNCONVETIONAL AND THE READABILITY IS LOWER
+    # COMPARED TO OTHER SOLUTIONS, IT RUNS FASTER
+    def romanToInt(self, s: str) -> int:
+        sum = 0
+        # start with first letter of numeral
+        index = 0
+        while len(s) > index:
+            ### find val while checking for special cases aswell
+            # IV, IX, I
+            if s[index] == "I":
+                if index+1 < len(s) and s[index+1] == "V":
+                    sum = sum + 4
+                    index+=1
+                elif index+1 < len(s) and s[index+1] == "X":
+                    sum = sum + 9
+                    index+=1
+                else:
+                    sum = sum + 1
+            # V
+            elif s[index] == "V":
+                sum = sum + 5
+            # XL, XC, X
+            elif s[index] == "X":
+                if index+1 < len(s) and s[index+1] == "L":
+                    sum = sum + 40
+                    index+=1
+                elif index+1 < len(s) and s[index+1] == "C":
+                    sum = sum + 90
+                    index+=1
+                else:
+                    sum = sum + 10
+            # L
+            elif s[index] == "L":
+                sum = sum + 50
+            # CD, CM, C
+            elif s[index] == "C":
+                if index+1 < len(s) and s[index+1] == "D":
+                    sum = sum + 400
+                    index+=1
+                elif index+1 < len(s) and s[index+1] == "M":
+                    sum = sum + 900
+                    index+=1
+                else:
+                    sum = sum + 100
+            # D
+            elif s[index] == "D":
+                sum = sum + 500
+            # M
+            elif s[index] == "M":
+                sum = sum + 1000
+            else:
+                print("Error at index: " + index)
+            # update index based on whether one letter or two were used
+            index+=1
+            
+        return sum
